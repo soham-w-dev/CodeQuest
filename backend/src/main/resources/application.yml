@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: codequest
+  datasource:
+    url: jdbc:h2:file:./data/codequestdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+app:
+  jwt:
+    secret: ${JWT_SECRET:your_jwt_secret_here}
+    expiration: 86400000 # 24 hours
+  code-execution:
+    timeout-ms: 10000
+    temp-dir: ./temp-execution
+  groq:
+    api-key: ${GROQ_API_KEY:your_groq_api_key_here}
+    model: openai/gpt-oss-120b
+    url: https://api.groq.com/openai/v1/chat/completions
+
